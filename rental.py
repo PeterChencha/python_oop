@@ -60,13 +60,8 @@ class Customer(object):
     """docstring for Customer."""
 
     def rentCar(self, request, days):
-        shop = Shop()
-        for car in shop.availableCars:
-            if request == car.model:
-                fair = shop.calculateFareDetails(request, days)
-                return fair
-            else:
-                print("Unfortunately we dont have that model available.")
+        fair = shop.calculateFareDetails(request, days)
+        return fair
 
 
 shop = Shop()
@@ -84,10 +79,10 @@ while True:
         shop.viewAvailableCars()
     elif userChoice == 2:
         print("What model would you like to rent?")
-        model = input()
+        model = str(input())
         print("For how many days")
         days = int(input())
-        fareDetails = shop.calculateFareDetails(model, days)
+        fareDetails = customer.rentCar(model, days)
         print("Fare will be {}".format(fareDetails))
     elif userChoice == 3:
         quit()
