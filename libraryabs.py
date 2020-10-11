@@ -20,7 +20,8 @@ class Library(object):
 
     def returnBook(self, book):
         if book not in self.borrowedBooks:
-            print("Sorry, the book {} was not borrowed from this library".format(book))
+            print("Sorry, the book {} was not borrowed from this library".
+                  format(book))
         else:
             index = self.borrowedBooks.index(book)
             del self.borrowedBooks[index]
