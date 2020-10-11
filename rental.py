@@ -43,11 +43,17 @@ class Shop(object):
         for car in self.availableCars:
             if car.model == model:
                 return car.rate
+        rate = 0
+        return rate
 
     def calculateFareDetails(self, requestedModel, noOfDays):
         rate = self.getRate(requestedModel)
-        fare = rate * noOfDays
-        return fare
+        if rate != 0:
+            fare = rate * noOfDays
+            return fare
+        else:
+            error = "Model not available"
+            return error
 
 
 class Customer(object):
@@ -59,6 +65,8 @@ class Customer(object):
             if request == car.model:
                 fair = shop.calculateFareDetails(request, days)
                 return fair
+            else:
+                print("Unfortunately we dont have that model available.")
 
 
 shop = Shop()
