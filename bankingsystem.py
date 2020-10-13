@@ -36,6 +36,7 @@ class SavingsAccount(Account):
     def createAccount(self, name, initialDeposit):
         self.accountNumber = self.random_with_N_digits(5)
         self.savingsAccounts[self.accountNumber] = [name, initialDeposit]
+        print("Creation successful, account number is ", self.accountNumber)
 
     def authenticate(self, name, accountNumber):
         if accountNumber in self.savingsAccounts.keys():
@@ -54,17 +55,18 @@ class SavingsAccount(Account):
             - withdrawAmount
             self.savingsAccounts[self.accountNumber][1] = newAmount
             print("Withdraw was successful, new balance is ",
-                  self.savingsAccounts[self.accountNumber][1])
+                  self.displayBalance())
 
     def deposit(self, depAmount):
         newAmount = self.savingsAccounts[self.accountNumber][1]
         + depAmount
         self.savingsAccounts[self.accountNumber][1] = newAmount
         print("Withdraw was successful, new balance is ",
-              self.savingsAccounts[self.accountNumber][1])
+              self.displayBalance())
 
     def displayBalance(self):
-        return self.savingsAccounts[self.accountNumber][1]
+        print("Available balance is ",
+              self.savingsAccounts[self.accountNumber][1])
 
     def random_with_N_digits(self, n):
         range_start = 10**(n-1)
